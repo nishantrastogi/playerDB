@@ -1,4 +1,4 @@
-package com.nishant.PlayerDB;
+package com.nishant.playerDB;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
