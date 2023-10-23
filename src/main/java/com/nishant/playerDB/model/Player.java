@@ -11,12 +11,14 @@ import java.sql.Date;
 
 @Entity
 public class Player {
+
     @Id @Getter @Setter
     private String playerID;
     @Getter @Setter
     private Integer birthYear;
     @Getter @Setter
     private Integer birthMonth;
+    @Getter @Setter
     private Integer birthDay;
     @Getter @Setter
     private String birthCountry;
@@ -58,6 +60,36 @@ public class Player {
     private String retroID;
     @Getter @Setter
     private String bbrefID;
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "playerID='" + playerID + '\'' +
+                ", birthYear=" + birthYear +
+                ", birthMonth=" + birthMonth +
+                ", birthDay=" + birthDay +
+                ", birthCountry='" + birthCountry + '\'' +
+                ", birthState='" + birthState + '\'' +
+                ", birthCity='" + birthCity + '\'' +
+                ", deathYear=" + deathYear +
+                ", deathMonth=" + deathMonth +
+                ", deathDay=" + deathDay +
+                ", deathCountry='" + deathCountry + '\'' +
+                ", deathState='" + deathState + '\'' +
+                ", deathCity='" + deathCity + '\'' +
+                ", nameFirst='" + nameFirst + '\'' +
+                ", nameLast='" + nameLast + '\'' +
+                ", nameGiven='" + nameGiven + '\'' +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", bats='" + bats + '\'' +
+                ", doesThrows='" + doesThrows + '\'' +
+                ", debut=" + debut +
+                ", finalGame=" + finalGame +
+                ", retroID='" + retroID + '\'' +
+                ", bbrefID='" + bbrefID + '\'' +
+                '}';
+    }
 
     // For JPA requirement
     private Player(){
