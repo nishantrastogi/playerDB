@@ -91,6 +91,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>PlayerDB-webapp</finalName>
 	</build>
 
 </project>
