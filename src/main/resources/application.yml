@@ -5,7 +5,7 @@ spring:
     password: password
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   data:
     path: src/main/resources/static/data.csv
 sleep-api:

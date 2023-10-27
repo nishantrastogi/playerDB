@@ -3,6 +3,8 @@ package com.nishant.playerDB.service;
 import com.nishant.playerDB.model.Player;
 import com.nishant.playerDB.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,11 +20,17 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
 
-    public List<Player> findAll(){
+    public List<Player> findAll() {
         return playerRepository.findAll();
     }
 
-    public Optional<Player> findById(String playerId){
+    public Optional<Player> findById(String playerId) {
         return playerRepository.findById(playerId);
     }
+
+    public Page<Player> findPlayerWithPagination(int pageNumber, int pageSize) {
+        Page<Player> players = playerRepository.findAll(PageRequest.of(pageNumber, pageSize));
+        return players;
+    }
+
 }
