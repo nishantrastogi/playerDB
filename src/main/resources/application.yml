@@ -6,3 +6,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+  data:
+    path: src/main/resources/static/data.csv
+sleep-api:
+  rate: 5

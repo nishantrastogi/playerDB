@@ -8,40 +8,41 @@ import com.nishant.playerDB.model.Player;
 import com.nishant.playerDB.repository.PlayerRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import javax.sound.midi.Soundbank;
 import java.io.File;
 
 @Service
 public class DataLoader {
     PlayerRepository playerRepository;
-    private static final String PATH = "src/main/resources/static/data.csv";
+    Environment env;
 
     @Autowired
-    public DataLoader(PlayerRepository playerRepository) {
+    public DataLoader(PlayerRepository playerRepository, Environment env) {
         this.playerRepository = playerRepository;
+        this.env = env;
     }
 
-    public void addPlayersToDb(File csvFile) throws Exception{
+    public void addPlayersToDb(File csvFile) throws Exception {
         CsvMapper mapper = new CsvMapper();
         mapper.disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
         CsvSchema schema = mapper.schemaFor(Player.class).withSkipFirstDataRow(true).withColumnSeparator(',');
         MappingIterator<Player> playerMappingIterator = mapper.readerFor(Player.class).with(schema).readValues(csvFile);
 
-        while(playerMappingIterator.hasNext()){
-            Player temp = playerMappingIterator.next();
-            System.out.println(temp.toString());
-            playerRepository.save(temp);
+        while (playerMappingIterator.hasNext()) {
+            playerRepository.save(playerMappingIterator.next());
         }
     }
 
     @PostConstruct
-    public void loadData(){
-        File csvFile = new File(PATH);
+    public void loadData() {
         try {
+            File csvFile = new File(env.getProperty("spring.data.path"));
             addPlayersToDb(csvFile);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
         }
     }
 

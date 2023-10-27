@@ -20,7 +20,7 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public List<Player> findAll(){
         return playerService.findAll();
     }
@@ -29,5 +29,7 @@ public class PlayerController {
     public Optional<Player> findById(@PathVariable String playerId){
         return playerService.findById(playerId);
     }
+
+    // TODO: paginate Api
 
 }
