@@ -1,0 +1,40 @@
+version: '3.3'
+services:
+#  linux:
+#    image: centos
+#    container_name: linux
+  playerdb-webapp:
+    container_name: playerdb-webapp
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: playerdb-webapp:latest
+    ports:
+      - 8080:8080
+    networks:
+      - spring-cloud-network
+    depends_on:
+      - playerdb-mysql
+  playerdb-mysql:
+    container_name: playerdb-mysql
+    hostname: playerdb-mysql
+    image: mysql:8.1
+#    ports:
+#      - 3306:3306
+    expose:
+      - 3306
+    networks:
+      - spring-cloud-network
+    volumes:
+      - playerdb-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_USER: root
+      MYSQL_DATABASE: playerdb
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+volumes:
+  playerdb-mysql-data:
+    driver: local
+networks:
+  spring-cloud-network:
+    driver: bridge

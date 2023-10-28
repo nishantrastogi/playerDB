@@ -2,8 +2,8 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/mydb
-    username: nishant
+    url: jdbc:mysql://playerdb-mysql:3306
+    username: root
     password: password
   jpa:
     hibernate:
