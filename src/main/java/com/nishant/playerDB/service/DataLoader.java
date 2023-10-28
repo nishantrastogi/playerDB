@@ -8,12 +8,15 @@ import com.nishant.playerDB.model.Player;
 import com.nishant.playerDB.repository.PlayerRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import javax.sound.midi.Soundbank;
 import java.io.File;
 
+@EnableCaching
 @Service
 public class DataLoader {
     PlayerRepository playerRepository;
@@ -25,6 +28,7 @@ public class DataLoader {
         this.env = env;
     }
 
+    @CacheEvict(cacheNames="books", allEntries=true)
     public void addPlayersToDb(File csvFile) throws Exception {
         CsvMapper mapper = new CsvMapper();
         mapper.disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);

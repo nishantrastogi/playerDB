@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class PlayerService {
 
-    private PlayerRepository playerRepository;
+    private PlayerRepository playerRepository ;
 
     @Autowired
     public PlayerService(PlayerRepository playerRepository) {
@@ -33,4 +33,11 @@ public class PlayerService {
         return players;
     }
 
+    public Player createPlayer(Player player){
+        return playerRepository.save(player);
+    }
+
+    public void deletePlayer(String playerId){
+        playerRepository.deleteById(playerId);
+    }
 }
