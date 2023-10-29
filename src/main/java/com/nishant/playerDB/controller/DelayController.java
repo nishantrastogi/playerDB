@@ -7,6 +7,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,7 +21,7 @@ public class DelayController {
         this.delayService = delayService;
     }
 
-    @RequestMapping(value = "/{seconds}", produces = "application/json")
+    @RequestMapping(value = "/{seconds}", produces = "application/json", method = RequestMethod.POST)
     public ResponseEntity createDelay(@PathVariable Integer seconds){
         return delayService.delay(new DelayPayload(seconds));
     }

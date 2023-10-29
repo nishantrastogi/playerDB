@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/players")
@@ -45,11 +46,13 @@ public class PlayerController {
     @Cacheable(cacheNames="playerCache", key="#playerId")
     @RequestMapping(value = "/{playerId}", method = RequestMethod.GET)
     public ResponseEntity findById(@PathVariable String playerId) {
+        Optional<Player> player = null;
         try{
-            return ResponseEntity.ok(playerService.findById(playerId));
+            player = playerService.findById(playerId);
         } catch (Exception e){
             return ResponseEntity.internalServerError().body(null);
         }
+        return player.isEmpty() ? ResponseEntity.status(404).body(null) : ResponseEntity.ok(player);
     }
 
     @RequestMapping(value = "/paginate", method = RequestMethod.GET)
@@ -63,7 +66,7 @@ public class PlayerController {
     }
 
     @CachePut(cacheNames="playerCache", key="#player.playerID")
-    @RequestMapping(value = "", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = {"","/"}, method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity createPlayer(@RequestBody Player player){
         try{
             return ResponseEntity.ok().body(playerService.createPlayer(player));
@@ -74,7 +77,7 @@ public class PlayerController {
 
     @CacheEvict(cacheNames="playerCache", key="#playerId")
     @RequestMapping(value = "/{playerId}", method = RequestMethod.DELETE)
-    public ResponseEntity createPlayer(@PathVariable String playerId){
+    public ResponseEntity deletePlayer(@PathVariable String playerId){
         try{
             playerService.deletePlayer(playerId);
         }catch (Exception e){
