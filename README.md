@@ -1,11 +1,9 @@
-# playerDB
-
 # Getting Started
 
 Make sure that docker-compose is installed and running on your machine: https://www.docker.com/products/docker-desktop/
 
 
-sh
+```sh
 # clone the repo
 git clone https://github.com/nishantrastogi/playerDB.git
 
@@ -26,11 +24,11 @@ start http://localhost:8080/api/players
 xdg-open http://localhost:8080/api/players
 # or
 gnome-open http://localhost:8080/api/players
-
+```
 
 # API Documentation
 
-
+```
 ## Get all players
 GET /api/players/
 ## Get all players - paginated
@@ -47,7 +45,7 @@ DELETE /api/players/{playerId}
 
 ## Rate limiting
 POST /api/sleep/{duration-seconds}
-
+```
 
 # Class Diagram
 
