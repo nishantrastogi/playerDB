@@ -1,6 +1,6 @@
 package com.nishant.playerDB.service;
 
-import com.nishant.playerDB.model.Player;
+import com.nishant.playerDB.model.entity.Player;
 import com.nishant.playerDB.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

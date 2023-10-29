@@ -3,7 +3,7 @@ package com.nishant.playerDB.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.nishant.playerDB.dto.AllPlayerDTO;
-import com.nishant.playerDB.model.Player;
+import com.nishant.playerDB.model.entity.Player;
 import com.nishant.playerDB.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;

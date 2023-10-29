@@ -28,7 +28,7 @@ services:
     volumes:
       - playerdb-mysql-data:/var/lib/mysql
     environment:
-      MYSQL_USER: root
+#      MYSQL_USER: root
       MYSQL_DATABASE: playerdb
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password

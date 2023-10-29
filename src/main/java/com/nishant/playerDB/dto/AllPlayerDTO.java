@@ -1,6 +1,6 @@
 package com.nishant.playerDB.dto;
 
-import com.nishant.playerDB.model.Player;
+import com.nishant.playerDB.model.entity.Player;
 import lombok.Getter;
 import lombok.Setter;
 

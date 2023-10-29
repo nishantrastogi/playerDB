@@ -1,4 +1,4 @@
-package com.nishant.playerDB.model;
+package com.nishant.playerDB.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
