@@ -42,6 +42,19 @@ public class PlayerController {
         }
     }
 
+    @RequestMapping(value = {"/all/height"}, method = RequestMethod.GET)
+    public ResponseEntity findAllByHeight() {
+        try{
+            List<Player> playerList = playerService.findAllByHeight();
+            AllPlayerDTO dtoObject = new AllPlayerDTO(playerList.size(), playerList);
+            ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String responseString = objectWriter.writeValueAsString(dtoObject);
+            return ResponseEntity.ok(responseString);
+        } catch (Exception e){
+            return ResponseEntity.internalServerError().body(e);
+        }
+    }
+
 
     @Cacheable(cacheNames="playerCache", key="#playerId")
     @RequestMapping(value = "/{playerId}", method = RequestMethod.GET)

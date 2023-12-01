@@ -24,6 +24,10 @@ public class PlayerService {
         return playerRepository.findAll();
     }
 
+    public List<Player> findAllByHeight() {
+        return playerRepository.findAllByOrderByHeightAsc();
+    }
+
     public Optional<Player> findById(String playerId) {
         return playerRepository.findById(playerId);
     }
